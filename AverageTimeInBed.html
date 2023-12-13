@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dre@ms</title>
+    <link rel="Stylesheet" href="Dreams.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    </style>
+    <script src="https://kit.fontawesome.com/ee913273e7.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+        
+        <div class="HeaderRectangleDreams">
+            <div class="HomeButtonDreams">
+                <button class="HomeButton .btn fa-solid fa-house fa-1x" onclick="navigateToDreamsTest()"></button>
+
+                        <div 
+                            id= "ATIBTopBox">This is where your sleep data would be input and displayed
+                            <h1>Sleep Tracker</h1>
+                            <label for="sleepInput">Enter hours of sleep:</label>
+                            <input type="number" id="sleepInput" min="0" step="0.5">
+                            <button id="ATIBAddButton" onclick="addSleep()">Add</button>
+                            <br>
+                            <h2>Sleep Log:</h2>
+                            <ul id="sleepLog"></ul>
+                            <h2>Average Sleep:</h2>
+                            <p id="averageSleep">0 hours</p>
+
+                        <script>
+                            // Array to store sleep data
+                            let sleepData = [];
+                    
+                            // Function to add sleep hours to the log
+                            function addSleep() {
+                                // Get the input value
+                                const sleepInput = document.getElementById('sleepInput');
+                                const hoursOfSleep = parseFloat(sleepInput.value);
+                    
+                                // Check if the input is valid
+                                if (!isNaN(hoursOfSleep) && hoursOfSleep >= 0) {
+                                    // Add the sleep hours to the array
+                                    sleepData.push(hoursOfSleep);
+                    
+                                    // Update the sleep log
+                                    updateSleepLog();
+                    
+                                    // Calculate and update the average sleep
+                                    calculateAverageSleep();
+                                } else {
+                                    alert('Please enter a valid number for hours of sleep.');
+                                }
+                    
+                                // Clear the input field
+                                sleepInput.value = '';
+                            }
+                    
+                            // Function to update the sleep log
+                            function updateSleepLog() {
+                                const sleepLog = document.getElementById('sleepLog');
+                                const li = document.createElement('li');
+                                li.textContent = `Night ${sleepData.length}: ${sleepData[sleepData.length - 1]} hours`;
+                                sleepLog.appendChild(li);
+                            }
+                    
+                            // Function to calculate and update the average sleep
+                            function calculateAverageSleep() {
+                                const averageSleep = document.getElementById('averageSleep');
+                                const totalSleep = sleepData.reduce((total, hours) => total + hours, 0);
+                                const average = totalSleep / sleepData.length || 0;
+                                averageSleep.textContent = `Average Sleep: ${average.toFixed(2)} hours`;
+                            }
+                        </script>
+                        </div>
+
+
+                        <div id= "ATIBBottomBox">This is where graphs would be displayed</div>
+
+                                    
+            </div>
+
+            
+
+
+            <script>
+                function navigateToDreamsTest() {
+                    window.location.href = 'Dreams.html';
+                }
+            </script>
+        <a>Dre@ms</a>
+
+
+        
+        
+</body>      
+
+
